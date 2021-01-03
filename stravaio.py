@@ -96,13 +96,13 @@ class StravaIO():
         after = date_to_epoch(after)
         _fetched = self.activities_api.get_logged_in_athlete_activities(after=after)
         if len(_fetched) > 0:
-            print(f"Fetched {len(_fetched)}, the latests is on {_fetched[-1].start_date}")
+            logger.info(f"Fetched {len(_fetched)}, the latests is on {_fetched[-1].start_date}")
             list_activities.extend(_fetched)
             if len(_fetched) == 30:
                 last_after = list_activities[-1].start_date
                 return self.get_logged_in_athlete_activities(after=last_after, list_activities=list_activities)
         else:
-            print("empty list")
+            logger.info("empty list")
         
         return list_activities
         
